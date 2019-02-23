@@ -74,7 +74,7 @@ def brute_force():
 
         # read in password prompt
         response = s.recv(1024)
-        #s end password
+        # send password
         password_format = str(len(password) + 1) + "s"
         password_payload = struct.pack(password_format, (password + "\n").encode("utf-8"))
         s.send(password_payload)
