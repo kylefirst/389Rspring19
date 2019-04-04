@@ -35,7 +35,7 @@ The hackers used port ```20``` (FTP-Data) to steal files from the server.
 
     b) Where was this photo taken? Provide a city, state and the name of the building in your answer.
 
-    The Hand, Rambla General Artigas, Punta Del Este, Maldonado
+    The Hand, Rambla General Artigas, Punta Del Este, Maldonado, Uruguay
 
     c) When was this photo taken? Provide a timestamp in your answer.
 
