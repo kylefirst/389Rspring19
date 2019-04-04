@@ -25,7 +25,7 @@ The hackers ip address is ```159.203.113.181``` which corresponds to somewhere i
 
 #### 4. What port are they using to steal files on the server?
 
-The hackers used port ```20``` to steal files from the server.
+The hackers used port ```20``` (FTP-Data) to steal files from the server.
 
 #### 5. Which file did they steal? What kind of file is it? Provide all metadata on the file. Specifically,
 
@@ -51,7 +51,7 @@ The hackers used port ```20``` to steal files from the server.
 
 #### 6. Which file did the attackers leave on the server?
 
-greetz.fpff
+```greetz.fpff```
 
 #### 7. What is a countermeasure to prevent this kind of intrusion from happening again? Note: disabling the vulnerable service is *not* an option.
 
@@ -59,4 +59,32 @@ Use some firewall rule to only allow known IP addresses and require some encrypt
 
 ### Part 2 (55 Pts)
 
-*Replace this text with your repsonse to our prompt for part 2!*
+1. Develop the parser, using both the
+[specification](fpff-spec.md) and
+`greetz.fpff` for reference. [stub.py](stub.py) contains the beginnings of a Python parser, if
+you'd like to develop in Python.
+
+My parser is called ```sol.py```. I 
+
+2. Parse `greetz.fpff`, and report the following information:
+    1. When was `greetz.fpff` generated?
+
+    - March 27th, 2019 at 4:15:05
+
+    2. Who authored `greetz.fpff`?
+
+    - fl1nch
+
+    4. List each section, giving us the data in it *and* its type.
+
+    | Section | Type | Length | Value |
+    |---|---|---|---|
+    | 1 | ASCII 0x1 | 24 | Hey you, keep looking :) |
+    | 2 | COORD 0x6 | 0x6 | (52.336035, 4.880673) |
+    | 3 | PNG 0x8 | 202776 | [Photo of Testudo](newPic.png) |
+    | 4 | ASCII 0x1 | 44 | }R983CSMC_perg_tndid_u0y_yllufep0h{-R983CSMC |
+    | 5 | ASCII 0x1 | 80 | Q01TQzM4OVIte2hleV9oM3lfeTBVX3lvdV9JX2RvbnRfbGlrZV95b3VyX2Jhc2U2NF9lbmNvZGluZ30= |
+
+    5. Report *at least* one flag hidden in `greetz.fpff`. Any other flag found will count as bonus points towards the *competition* portion of the syllabus.
+
+    - CMSC389R-{w3lc0me_b@ck_fr0m_spr1ng_br3ak}
