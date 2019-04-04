@@ -87,4 +87,6 @@ My parser is called ```sol.py```. I manually parsed the Magic, Version, Header, 
 
     5. Report *at least* one flag hidden in `greetz.fpff`. Any other flag found will count as bonus points towards the *competition* portion of the syllabus.
 
-    - CMSC389R-{w3lc0me_b@ck_fr0m_spr1ng_br3ak}
+    - CMSC389R-{w3lc0me_b@ck_fr0m_spr1ng_br3ak} (printed on embedded PNG image)
+    - CMSC389R-{h0pefully_y0u_didnt_grep_CMSC389R} (Value for section 4 in reverse)
+    - CMSC389R-{hey_h3y_y0U_you_I_dont_like_your_base64_encoding} (Decoded base64 value for section 5)
