@@ -61,9 +61,9 @@ pos = 0
 
 # Parse Body
 for section in range(1,section_count+1):
-    pval = pos+8
     stype = hex(struct.unpack("<L", body[pos:(pos+4)])[0])
-    slen = int(struct.unpack("<L", body[(pos+4):pval])[0])
+    slen = int(struct.unpack("<L", body[(pos+4):pos+8])[0])
+    pos = pos+8
 
     # Display Metadata
     print("SECTION: %d" % (section))
@@ -72,35 +72,35 @@ for section in range(1,section_count+1):
 
     # Display Value
     if stype == hex(SECTION_ASCII):
-        print("VALUE: %s\n" % (struct.unpack(("<%ds" % slen), body[(pval):(pval+slen)]))[0])
+        print("VALUE: %s\n" % (struct.unpack(("<%ds" % slen), body[(pos):(pos+slen)]))[0])
 
     elif stype == hex(SECTION_UTF8):
-        print("  VALUE: %s\n" % (struct.unpack(("<%ds" % slen), body[(pval):(pval+slen)])).decode('utf-8')[0])
+        print("  VALUE: %s\n" % (struct.unpack(("<%ds" % slen), body[(pos):(pos+slen)])).decode('utf-8')[0])
 
     elif stype == hex(SECTION_WORDS):
         words = slen / 4
-        print("  VALUE: %s\n" % (struct.unpack(("<%s" % 'L'*words), body[(pval):(pval+slen)]))[0])
+        print("  VALUE: %s\n" % (struct.unpack(("<%s" % 'L'*words), body[(pos):(pos+slen)]))[0])
 
     elif stype == hex(SECTION_DWORDS):
         dwords = slen / 8
-        print("  VALUE: %s\n" % (struct.unpack(("<%s" % 'Q'*dwords), body[(pval):(pval+slen)]))[0])
+        print("  VALUE: %s\n" % (struct.unpack(("<%s" % 'Q'*dwords), body[(pos):(pos+slen)]))[0])
 
     elif stype == hex(SECTION_DOUBLES):
         doubles = slen / 8
-        print("  VALUE: %s\n" % (struct.unpack(("<%s" % 'd'*doubles), body[(pval):(pval+slen)]))[0])
+        print("  VALUE: %s\n" % (struct.unpack(("<%s" % 'd'*doubles), body[(pos):(pos+slen)]))[0])
 
     elif stype == hex(SECTION_COORD):
-        print("COORDINATES: %s\n" % (struct.unpack("<dd", body[(pval):(pval+slen)]),))
+        print("COORDINATES: %s\n" % (struct.unpack("<dd", body[(pos):(pos+slen)]),))
 
     elif stype == hex(SECTION_REFERENCE):
-        print("REFERENCE: %d\n" % int(struct.unpack("<L", body[(pval):(pval+slen)])[0]))
+        print("REFERENCE: %d\n" % int(struct.unpack("<L", body[(pos):(pos+slen)])[0]))
 
     # Write Image/Gif as byte arrays
     elif stype == hex(SECTION_PNG):
         signature = [137, 80, 78, 71, 13, 10, 26, 10]
 
         newPic = open("newPic.png", "wb")
-        newPic.write(bytearray(signature + list(struct.unpack('<' + ("%s" % 'B'*slen), body[(pval):(pval+slen)]))))
+        newPic.write(bytearray(signature + list(struct.unpack('<' + ("%s" % 'B'*slen), body[(pos):(pos+slen)]))))
 
         print("\n")
 
@@ -108,7 +108,7 @@ for section in range(1,section_count+1):
         signature = [47, 49, 46, 38, 37, 61]
        
         newGif = open("newGif87.gif", "wb")
-        newGif.write(bytearray(signature + list(struct.unpack('<' + ("%s" % 'B'*slen), body[(pval):(pval+slen)]))))
+        newGif.write(bytearray(signature + list(struct.unpack('<' + ("%s" % 'B'*slen), body[(pos):(pos+slen)]))))
 
         print("\n")
 
@@ -116,8 +116,8 @@ for section in range(1,section_count+1):
         signature = [47, 49, 46, 38, 39, 61]
 
         newGif = open("newGif89.gif", "wb")
-        newGif.write(bytearray(signature + list(struct.unpack('<' + ("%s" % 'B'*slen), body[(pval):(pval+slen)]))))
+        newGif.write(bytearray(signature + list(struct.unpack('<' + ("%s" % 'B'*slen), body[(pos):(pos+slen)]))))
 
         print("\n")
     
-    pos = pval + slen
+    pos = pos + slen
