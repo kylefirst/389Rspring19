@@ -64,7 +64,7 @@ Use some firewall rule to only allow known IP addresses and require some encrypt
 `greetz.fpff` for reference. [stub.py](stub.py) contains the beginnings of a Python parser, if
 you'd like to develop in Python.
 
-My parser is called ```sol.py```. I manually parsed the Magic, Version, Header, Timestamp, Author and Section Count using ```Struct.unpack()``` With the corresponding bytes. Timestamp was in a weird format so I converted it to UTC time. Then I parsed to remaining bit of the file section by section. ```stype``` and ```slen``` were the first part of the section so I parsed those first. Then depending on ```stype``` I decided what to print out for results or file to save for pngs and gifs. Media files are written to a file as bytes with the data portion appended to the corresponding header type.
+My parser is called ```sol.py```. I manually parsed the Magic, Version, Header, Timestamp, Author and Section Count using ```Struct.unpack()``` with the corresponding bytes. Timestamp was in a weird format so I converted it to UTC time. Then I parsed to remaining bit of the file section by section. ```stype``` and ```slen``` were the first part of the section so I parsed those first. Then depending on ```stype``` I decided what to print out for results or file to save for pngs and gifs. Media files are written to a file as bytes with the data portion appended to the corresponding header type.
 
 2. Parse `greetz.fpff`, and report the following information:
     1. When was `greetz.fpff` generated?
